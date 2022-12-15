@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>OW-WOW</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Ow-Wow</h1>
+        <div class="result-holder">
+            <div class="loader">
+                <h2>Loading...</h2>
+            </div>
+        </div>
+        <!-- <script type="module" src="index.js"></script> -->
+        <script>
+            fetch("https://owen-wilson-wow-api.onrender.com/wows/random").then(
+                (res) => res.json()
+            ).then(
+                (data) => {
+                    console.log(data);
+
+                    const videoResult = document.createElement('video');
+                    videoResult.width = "500";
+                    videoResult.controls = true;
+                    const videoSource = document.createElement('source');
+                    videoSource.src = data[0].video['1080p'];
+                    videoSource.type = "video/mp4";
+                    videoResult.append(videoSource);
+                    document.querySelector('div.result-holder').append(videoResult);
+
+                    
+
+                    document.querySelector('div.loader').remove();
+                }
+            )
+        </script>
+    </body>
+</html>
