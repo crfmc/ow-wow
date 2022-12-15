@@ -22,17 +22,32 @@
                 (data) => {
                     console.log(data);
 
+                    // Save DOM element to place data in
+                    const result_holder = document.querySelector('div.result-holder');
+
+                    const info = data[0];
+
+                    // Save name of the character
+                    const movie_name = info.movie;
+                    const movie_character = info.character;
+
+                    // Create video element
                     const videoResult = document.createElement('video');
                     videoResult.width = "500";
                     videoResult.controls = true;
                     const videoSource = document.createElement('source');
-                    videoSource.src = data[0].video['1080p'];
+                    videoSource.src = info.video['1080p'];
                     videoSource.type = "video/mp4";
                     videoResult.append(videoSource);
-                    document.querySelector('div.result-holder').append(videoResult);
 
-                    
+                    // Append movie + character info
+                    result_holder.append(document.createTextNode(movie_character));
+                    result_holder.append(document.createTextNode(movie_name));
 
+                    // Append video to DOM
+                    result_holder.append(videoResult);
+
+                    // Remove Loader
                     document.querySelector('div.loader').remove();
                 }
             )
