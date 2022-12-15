@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <h1>Ow-Wow</h1>
+        <!-- <h1>Ow-Wow</h1> -->
         <div class="result-holder">
             <div class="loader">
                 <h2>Loading...</h2>
@@ -29,11 +29,15 @@
 
                     // Save name of the character
                     const movie_name = info.movie;
+                    const movie_name_node = document.createElement("p");
+                    movie_name_node.innerText = movie_name;
                     const movie_character = info.character;
+                    const movie_character_node = document.createElement("p");
+                    movie_character_node.innerText = movie_character;
 
                     // Create video element
                     const videoResult = document.createElement('video');
-                    videoResult.width = "500";
+                    videoResult.width = "800"; // width of element
                     videoResult.controls = true;
                     const videoSource = document.createElement('source');
                     videoSource.src = info.video['1080p'];
@@ -41,8 +45,8 @@
                     videoResult.append(videoSource);
 
                     // Append movie + character info
-                    result_holder.append(document.createTextNode(movie_character));
-                    result_holder.append(document.createTextNode(movie_name));
+                    result_holder.append(movie_character_node);
+                    result_holder.append(movie_name_node);
 
                     // Append video to DOM
                     result_holder.append(videoResult);
